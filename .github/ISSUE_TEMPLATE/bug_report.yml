@@ -1,0 +1,58 @@
+name: 问题反馈
+description: 崩溃、规则不生效、和其他 mod 冲突都算
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先在 `logs/latest.log` 里搜 `carpet-rs-addition`，崩溃的话把 crash-report 一起贴上。
+        用 `/carpet <规则名>` 看一下规则当前是不是 true。
+
+  - type: input
+    id: mc-version
+    attributes:
+      label: Minecraft 版本
+      placeholder: 1.21.11
+    validations:
+      required: true
+
+  - type: input
+    id: mod-version
+    attributes:
+      label: carpet-rs-addition 版本
+      placeholder: 0.1.1+1.21.11
+    validations:
+      required: true
+
+  - type: input
+    id: carpet-version
+    attributes:
+      label: carpet 版本
+      placeholder: 1.4.194
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 现象
+      description: 开的是哪条规则，怎么操作的，出现了什么
+      placeholder: |
+        /carpet rsNoAiDragonBreath true
+        手持空玻璃瓶点头部右键，没有反应
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: 日志
+      description: 相关日志行，或者整个 latest.log 的链接
+      render: shell
+
+  - type: input
+    id: other-mods
+    attributes:
+      label: 装了哪些 carpet 附属
+      description: 装了 MagicLib 之类的一定要写
+      placeholder: carpet-tis-addition, carpet-org-addition, MagicLib

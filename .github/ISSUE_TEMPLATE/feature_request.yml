@@ -1,0 +1,27 @@
+name: 功能建议
+description: 想要一条新规则，或者现有规则要改行为
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: 想要什么
+      description: 说清楚在游戏里怎么操作、会得到什么结果
+      placeholder: |
+        手持 XX 对着 YY 右键，然后 ZZ
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: 为什么需要
+      description: 原版做不到的点在哪，或者现有体验哪里别扭
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: 确认一下
+      options:
+        - label: 这个功能用 carpet 规则开关就行，不需要单独的指令
+        - label: 不涉及客户端渲染

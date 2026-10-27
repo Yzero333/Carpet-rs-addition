@@ -1,0 +1,7 @@
+{
+  "carpet.rule.rsAxeInstantGlass.name": "斧头秒破玻璃",
+  "carpet.rule.rsAxeInstantGlass.desc": "使用任意斧头时,（染色）玻璃/玻璃板可秒破（含遮光玻璃）",
+  "carpet.rule.rsNoAiDragonBreath.name": "无AI末影龙取龙息",
+  "carpet.rule.rsNoAiDragonBreath.desc": "手持空玻璃瓶右键无AI末影龙的头部即可取得龙息",
+  "carpet.category.RS": "RS"
+}

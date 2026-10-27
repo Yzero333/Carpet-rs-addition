@@ -1,0 +1,73 @@
+// ============================================================================
+//  carpet-rs-addition —— 构建脚本
+//  目标：Minecraft 1.21.11 / Java 21 / Fabric Loader 0.18.2
+//  前置：carpet 主 mod（编译期取 libs/ 内的 jar，运行期由服主提供）
+// ============================================================================
+
+plugins {
+    // 本机离线缓存中可解析的 Loom 版本（该版本已成功产出 1.21.11 的 Minecraft/Yarn 产物）
+    id 'fabric-loom' version '1.11-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = "${project.mod_version}+${project.minecraft_version}"
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+loom {
+    // 说明：这里刻意不使用 splitEnvironmentSourceSets()。
+    // 本 mod 是纯服务端实现，客户端相关类统一放在主 source set 并用 @Environment(EnvType.CLIENT) 标注，
+    // 这样既不增加构建复杂度，也不会让客户端专属代码在服务端被加载。
+}
+
+repositories {
+    // carpet 主 mod：本地 libs 目录（原版 carpet 无公开 maven 坐标）
+    flatDir {
+        name = 'carpet-libs'
+        dirs 'libs'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // ---- 前置 mod：carpet ----
+    // 只编译期需要；不打进本 mod 的 jar，运行期由 /mods 目录里的 carpet 主 mod 提供。
+    modCompileOnly(":${project.carpet_jar.replace('.jar', '')}") { transitive = false }
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "carpet_version", project.carpet_version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+               "carpet_version": project.carpet_version,
+               "minecraft_version": project.minecraft_version,
+               "loader_version": project.loader_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}

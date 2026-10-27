@@ -1,0 +1,40 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# 离线构建缓存与种子（体积大，不入版本库；用 tools/restore-offline-cache.ps1 重建）
+.gradle-home/
+.offline-seed/
+
+# 构建日志
+build-log*.txt
+logs/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.eclipse/
+bin/
+.classpath
+.project
+run/
+
+# 本地前置 mod（carpet 主 mod 的 jar 需自行放入）
+libs/*.jar
+!libs/.gitkeep
+
+# 运行期产物
+config/
+
+# 本地文档：不入公开仓库（README.md 是唯一公开文档）
+docs/
+
+# 不上传到 GitHub（本地保留）
+tools/
+.gitattributes

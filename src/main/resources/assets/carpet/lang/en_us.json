@@ -1,0 +1,7 @@
+{
+  "carpet.rule.rsAxeInstantGlass.name": "Axe Instantly Breaks Glass",
+  "carpet.rule.rsAxeInstantGlass.desc": "With any axe, (stained) glass / glass panes break instantly (tinted glass included)",
+  "carpet.rule.rsNoAiDragonBreath.name": "Dragon's Breath from No-AI Dragons",
+  "carpet.rule.rsNoAiDragonBreath.desc": "Right-click a no-AI Ender Dragon's head with an empty glass bottle to collect Dragon's Breath",
+  "carpet.category.RS": "RS"
+}

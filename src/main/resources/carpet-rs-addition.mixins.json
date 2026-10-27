@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "carpetrs.addition.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "carpet-rs-addition-refmap.json",
+  "mixins": [
+    "ItemAxeInstantGlassMixin",
+    "ServerAxeInstantGlassMixin",
+    "DragonBreathBottleMixin"
+  ]
+}
